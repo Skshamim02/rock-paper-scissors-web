@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS Tournament Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏆 RPS AI Tournament Challenge 🏆</h1>
+        </header>
+
+        <div class="tournament-info">
+            <div class="info-item">
+                <span>Round:</span>
+                <span id="tournament-round">0</span>
+                <span>/ 3</span>
+            </div>
+            <div class="info-item">
+                <span>Match Score:</span>
+                <span id="match-player-score" class="win-color">0</span>
+                <span>-</span>
+                <span id="match-computer-score" class="lose-color">0</span>
+            </div>
+            <div class="info-item">
+                <span>Streak:</span>
+                <span id="win-streak" class="win-color">0</span>
+            </div>
+            <div class="info-item">
+                <span>AI:</span>
+                <span id="difficulty-display" class="draw-color">Medium</span>
+            </div>
+        </div>
+
+        <div class="score-display">
+            <div class="score-item">
+                <span class="score-label">Overall Wins:</span>
+                <span id="player-score" class="score-value win-color">0</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">Overall Losses:</span>
+                <span id="computer-score" class="score-value lose-color">0</span>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="player-side">
+                <div id="player-name" class="name win-color">Player</div>
+                <div class="choice-display">
+                    <img id="player-choice" src="images/placeholder.png" alt="Player's choice">
+                </div>
+            </div>
+            <div class="vs">VS</div>
+            <div class="computer-side">
+                <div class="name lose-color">AI</div>
+                <div class="choice-display">
+                    <img id="computer-choice" src="images/placeholder.png" alt="Computer's choice">
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="rock" class="choice-btn">ROCK</button>
+            <button id="paper" class="choice-btn">PAPER</button>
+            <button id="scissors" class="choice-btn">SCISSORS</button>
+        </div>
+
+        <div id="message" class="message">Pick your move!</div>
+
+        <div class="settings">
+            <button id="reset-match">Reset Match</button>
+            <button id="reset-all">Reset All</button>
+            <button id="change-name">Change Name</button>
+            <button id="set-difficulty">Set Difficulty</button>
+        </div>
+
+        <div class="extra-buttons">
+            <button id="help">Help</button>
+            <button id="stats">Statistics</button>
+        </div>
+    </div>
+
+    <!-- Overlay for modals -->
+    <div id="overlay" class="overlay hidden"></div>
+
+    <!-- Winner animation modal -->
+    <div id="winner-modal" class="modal winner-modal hidden">
+        <div class="modal-content">
+            <div id="winner-text" class="winner-text">You Win!</div>
+            <div class="button-row">
+                <button id="continue-btn">Continue</button>
+                <button id="new-game-btn">New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Difficulty selection modal -->
+    <div id="difficulty-modal" class="modal difficulty-modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">Select AI Difficulty:</div>
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="difficulty" value="Easy"> Easy
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="difficulty" value="Medium" checked> Medium
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="difficulty" value="Hard"> Hard
+                </label>
+            </div>
+            <div class="separator"></div>
+            <div class="button-row">
+                <button id="confirm-difficulty" class="confirm-btn">CONFIRM</button>
+                <button id="cancel-difficulty" class="cancel-btn">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help modal -->
+    <div id="help-modal" class="modal help-modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">How to Play</div>
+            <div class="help-text">
+                <p>🎮 RPS Tournament Game Rules 🎮</p>
+                <ul>
+                    <li>Win matches by scoring 2 points before the AI</li>
+                    <li>Win 3 matches to become the RPS Champion</li>
+                    <li>Use your strategy to outsmart the AI</li>
+                </ul>
+                <p>Difficulty Levels:</p>
+                <ul>
+                    <li>Easy: AI plays randomly with some bias for you to win</li>
+                    <li>Medium: AI plays with moderate strategy</li>
+                    <li>Hard: AI analyzes your patterns and adapts its strategy</li>
+                </ul>
+                <p>Rock beats Scissors<br>
+                Scissors beats Paper<br>
+                Paper beats Rock</p>
+                <p>Good luck, Champion!</p>
+            </div>
+            <button id="close-help" class="close-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Stats modal -->
+    <div id="stats-modal" class="modal stats-modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">Player Statistics</div>
+            <div id="stats-content" class="stats-content">
+                <!-- Filled dynamically -->
+            </div>
+            <button id="close-stats" class="close-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
